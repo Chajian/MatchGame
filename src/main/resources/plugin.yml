@@ -1,0 +1,9 @@
+name: MatchGame
+verson: 1.0
+main: org.github.chajian.matchgame.MatchGame
+commands:
+  match:
+    description: 匹配插件的主要指令
+    usage: /<command>
+    permission: matchgame.use
+

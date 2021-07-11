@@ -1,0 +1,51 @@
+-J-Dhttp.proxyHost=localhost
+-J-Dhttp.proxyPort=1087
+-J-Dhttps.proxyHost=localhost
+-J-Dhttps.proxyPort=1087
+-J-Dhttp.nonProxyHosts="www.google.com^|*.somewhere.com^|*.spigot.mc"
+@options
+@packages
+-classpath
+'/Users/supeng/.m2/repository/org/spigotmc/spigot-api/1.16.2-R0.1-SNAPSHOT/spigot-api-1.16.2-R0.1-SNAPSHOT.jar:/Users/supeng/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/Users/supeng/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar:/Users/supeng/.m2/repository/com/google/code/gson/gson/2.8.0/gson-2.8.0.jar:/Users/supeng/.m2/repository/net/md-5/bungeecord-chat/1.16-R0.3/bungeecord-chat-1.16-R0.3.jar:/Users/supeng/.m2/repository/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/supeng/Desktop/demo/MatchGame/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2021. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'MatchGame 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/Users/supeng/Desktop/demo/MatchGame/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'MatchGame 1.0-SNAPSHOT API'
+org.github.chajian.matchgame
+/Users/supeng/.m2/repository/org/spigotmc/spigot-api/1.16.2-R0.1-SNAPSHOT/spigot-api-1.16.2-R0.1-SNAPSHOT.jar = 1624724200000
+/Users/supeng/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar = 1569638708000
+/Users/supeng/.m2/repository/com/google/guava/guava/21.0/guava-21.0.jar = 1571316928000
+/Users/supeng/.m2/repository/com/google/code/gson/gson/2.8.0/gson-2.8.0.jar = 1593790295000
+/Users/supeng/.m2/repository/net/md-5/bungeecord-chat/1.16-R0.3/bungeecord-chat-1.16-R0.3.jar = 1602483435000
+/Users/supeng/.m2/repository/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar = 1597755459000
+/Users/supeng/Desktop/demo/MatchGame/src/main/java = 1624724401000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/constant-values.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/overview-tree.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/index.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/allclasses-noframe.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/index-all.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/deprecated-list.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/script.js = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/stylesheet.css = 1624774499000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/help-doc.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/javadoc.sh = 1624774499000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/allclasses-frame.html = 1624774528000
+/Users/supeng/Desktop/demo/MatchGame/target/site/apidocs/package-list = 1624774528000

@@ -1,0 +1,36 @@
+package org.github.chajian.matchgame.data;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.github.chajian.matchgame.data.define.GameModel;
+
+import java.sql.Timestamp;
+import java.util.HashMap;
+
+/**
+ * 比赛记录
+ * @author YangLin
+ */
+@AllArgsConstructor
+@Data
+public class GameRecord {
+    //玩家名称
+    private String palyerName;
+    //游戏id
+    private int gameId;
+    //得分
+    private int score;
+    //游戏模式
+    private GameModel gameModel;
+    //杀敌数
+    private int kills;
+    //死亡数
+    private int deaths;
+    //时间戳存玩家在游戏中的游玩时间
+    private Timestamp timestamp;
+
+    //其他信息
+    private HashMap<String,Object> othersInfo = new HashMap<String, Object>();
+
+
+}
