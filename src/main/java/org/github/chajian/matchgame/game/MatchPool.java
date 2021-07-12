@@ -13,7 +13,7 @@ public class MatchPool {
 
     private List<Player> players = new ArrayList<Player>();
     private String name;
-    private int gameId;
+    private String gameId;
 
 
 }

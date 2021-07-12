@@ -2,6 +2,7 @@ package org.github.chajian.matchgame.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.github.chajian.matchgame.data.define.GameModel;
 
 import java.sql.Timestamp;
@@ -12,12 +13,13 @@ import java.util.HashMap;
  * @author YangLin
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class GameRecord {
+public class GameRecordPO {
     //玩家名称
     private String palyerName;
     //游戏id
-    private int gameId;
+    private String gameId;
     //得分
     private int score;
     //游戏模式
