@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * 积分
  * 主键 游戏id，用户名
- * @author YangLin
+ * @author Chajian
  *
  */
 @AllArgsConstructor

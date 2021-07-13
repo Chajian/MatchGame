@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * 事件监听
- * @author YangLin
+ * @author Chajian
  */
 public class MyListener implements Listener {
 

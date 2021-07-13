@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * 玩家匹配事件
  * 需要在玩家匹配游戏的代码块中
  * 调用Bukkit.getPluginManager().callEvent(PlayerMatchEvent)监听才能生效
- * @author YangLin
+ * @author Chajian
  *
  */
 public class PlayerMatchEvent extends Event implements Cancellable {

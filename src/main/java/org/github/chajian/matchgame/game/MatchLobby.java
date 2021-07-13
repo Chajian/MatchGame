@@ -1,6 +1,6 @@
 package org.github.chajian.matchgame.game;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.entity.Player;
 import org.github.chajian.matchgame.data.define.MatchModel;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 /**
  * 匹配大厅
- * @author YangLin
+ * @author Chajian
  * 进入条件:当玩家点击匹配按钮，就将玩家记录在匹配大厅，玩家在匹配大厅并不影响其正常游戏
  * 匹配逻辑
  *
@@ -36,7 +36,6 @@ public class MatchLobby {
     static HashMap<String,MatchPool> poolHashMap = new HashMap<String,MatchPool>();
     //游戏模式
     static MatchModel model = MatchModel.VIOLENT;
-
 
     public void join(Player player){
 

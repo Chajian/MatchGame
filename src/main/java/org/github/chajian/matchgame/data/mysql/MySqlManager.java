@@ -10,7 +10,7 @@ import java.io.InputStream;
 /**
  * mysql管理器
  * 单例模式
- * @author YangLin
+ * @author Chajian
  */
 public class MySqlManager {
     private SqlSessionFactory sqlSessionFactory;

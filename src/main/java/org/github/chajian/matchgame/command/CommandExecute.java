@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 
 /**
  * 指令执行器接口
- * @author YangLin
+ * @author Chajian
  */
 public interface CommandExecute {
 

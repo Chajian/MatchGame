@@ -8,7 +8,7 @@ import lombok.Data;
  *
  * confrontation
  *
- * @author YangLin
+ * @author Chajian
  */
 @AllArgsConstructor
 public enum GameModel {

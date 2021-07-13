@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 /**
  * 比赛记录
- * @author YangLin
+ * @author Chajian
  */
 @AllArgsConstructor
 @NoArgsConstructor
