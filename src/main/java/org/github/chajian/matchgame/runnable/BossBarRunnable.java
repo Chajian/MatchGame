@@ -18,8 +18,10 @@ public class BossBarRunnable extends BukkitRunnable {
     public void run() {
         for(int i = 0 ; i < noteBars.size() ; i++){
             NoteBar noteBar = noteBars.get(i);
-            if (noteBar.decrease())
+            if (noteBar.decrease()) {
                 noteBar.destory();
+                noteBars.remove(i);
+            }
         }
     }
 

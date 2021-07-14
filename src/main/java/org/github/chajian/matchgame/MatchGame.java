@@ -2,6 +2,8 @@ package org.github.chajian.matchgame;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NonNull;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.boss.BossBar;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -24,9 +26,25 @@ public class MatchGame extends JavaPlugin {
     private static MatchGame matchGame;
     private HashMap<String,BaseCommand> commands;//指令集
     private BossBarRunnable bossbarRunnable;
+    private BukkitAudiences adventure;
+
+    public @NonNull BukkitAudiences adventure() {
+        if(this.adventure == null) {
+            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
+        }
+        return this.adventure;
+    }
 
     @Override
     public void onDisable() {
+        bossbarRunnable.cancel();
+        bossbarRunnable = null;
+        commands = null;
+        //关闭adventure
+        if(this.adventure != null) {
+            this.adventure.close();
+            this.adventure = null;
+        }
         getLogger().info("匹配插件卸载成功!");
     }
 
@@ -37,16 +55,16 @@ public class MatchGame extends JavaPlugin {
 
         //注册监听
         getServer().getPluginManager().registerEvents(new MyListener(),this);
-
+        //初始化NoteBar线程
+        bossbarRunnable = new BossBarRunnable();
+        bossbarRunnable.runTaskTimer(this,20L,20L);
         //指令注册
         HandlerCommand handlerCommand = new HandlerCommand();
         new HelpCommand();
         new TestCommand();
         this.getCommand("match").setExecutor(handlerCommand);
-
-        //初始化NoteBar线程
-        bossbarRunnable = new BossBarRunnable();
-        bossbarRunnable.runTaskTimer(this,20L,20L);
+        //开启adventure支持ui
+        this.adventure = BukkitAudiences.create(this);
         getLogger().info("匹配插件加载成功!");
     }
 

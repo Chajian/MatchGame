@@ -10,6 +10,7 @@ org\github\chajian\matchgame\game\MatchPool.class
 org\github\chajian\matchgame\command\CommandExecute.class
 org\github\chajian\matchgame\command\HandlerCommand.class
 org\github\chajian\matchgame\runnable\BossBarRunnable.class
+org\github\chajian\matchgame\gui\MainGui.class
 org\github\chajian\matchgame\command\HelpCommand.class
 org\github\chajian\matchgame\data\define\MatchModel.class
 org\github\chajian\matchgame\command\BaseCommand.class

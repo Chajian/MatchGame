@@ -8,8 +8,8 @@ public class Calculate {
 
     @Test
     public void a(){
-        double a = 1;
-        log.info("测试结果"+a/500);
+        double a = 500;
+        log.info("测试结果"+1/a);
     }
 
     @Test

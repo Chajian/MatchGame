@@ -1,6 +1,7 @@
 package org.github.chajian.matchgame.game;
 
 import org.bukkit.entity.Player;
+import org.github.chajian.matchgame.bar.NoteBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ public class MatchPool {
     private String name;
     /*游戏id*/
     private String gameId;
+    /*提醒消息*/
+    private NoteBar noteBar;
 
 
 }

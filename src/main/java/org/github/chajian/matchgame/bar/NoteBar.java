@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class NoteBar {
     /*bar存在的时间*/
-    int maxProgress;
+    double maxProgress;
     /*bar的实体对象*/
     BossBar bossBar;
     /*字符串格式*/
