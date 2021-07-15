@@ -2,7 +2,6 @@ package org.github.chajian.matchgame.data.config;
 
 import lombok.Data;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.github.chajian.matchgame.MatchGame;
 
@@ -11,20 +10,32 @@ import java.io.IOException;
 
 /**
  * 配置器
+ * - 单例模式
  * @author Chajian
  */
 @Data
 public class Configurator {
+
+    private static Configurator configurator = null;
     /*配置文件*/
     public File configFile;
     /*文件配置*/
-    public FileConfiguration config;
+    public YamlConfiguration config;
     /*插件本体*/
     public final MatchGame matchGame;
+    public File dataFolder;
 
-
-    public Configurator(MatchGame matchGame) {
-        this.matchGame = matchGame;
+    private Configurator() {
+        this.matchGame = MatchGame.getMatchGame();
+        dataFolder = matchGame.getDataFolder();
+        dataFolder.mkdir();
+        try {
+            initConfig();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -35,7 +46,13 @@ public class Configurator {
         configFile = new File(dataFolder,"config.yml");
         config = new YamlConfiguration();
         if(!configFile.exists())
-            configFile.createNewFile();
+            getMatchGame().saveResource("config.yml",false);
         config.load(configFile);
+    }
+
+    public static Configurator getConfigurator() {
+        if (configurator == null)
+            configurator = new Configurator();
+        return configurator;
     }
 }

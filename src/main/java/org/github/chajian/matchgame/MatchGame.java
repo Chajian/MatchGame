@@ -1,22 +1,14 @@
 package org.github.chajian.matchgame;
 
-import lombok.Data;
-import lombok.Getter;
 import lombok.NonNull;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.bukkit.boss.BossBar;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.github.chajian.matchgame.command.BaseCommand;
-import org.github.chajian.matchgame.command.HandlerCommand;
-import org.github.chajian.matchgame.command.HelpCommand;
-import org.github.chajian.matchgame.command.TestCommand;
+import org.github.chajian.matchgame.command.*;
+import org.github.chajian.matchgame.game.MatchLobby;
 import org.github.chajian.matchgame.listener.MyListener;
 import org.github.chajian.matchgame.runnable.BossBarRunnable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 匹配插件入口
@@ -25,6 +17,7 @@ import java.util.List;
 public class MatchGame extends JavaPlugin {
     private static MatchGame matchGame;
     private HashMap<String,BaseCommand> commands;//指令集
+    private MatchLobby matchLobby;
     private BossBarRunnable bossbarRunnable;
     private BukkitAudiences adventure;
 
@@ -52,7 +45,8 @@ public class MatchGame extends JavaPlugin {
     public void onEnable() {
         matchGame = this;
         commands = new HashMap<>();
-
+        //注册大厅
+        matchLobby = new MatchLobby();
         //注册监听
         getServer().getPluginManager().registerEvents(new MyListener(),this);
         //初始化NoteBar线程
@@ -62,9 +56,11 @@ public class MatchGame extends JavaPlugin {
         HandlerCommand handlerCommand = new HandlerCommand();
         new HelpCommand();
         new TestCommand();
+        new GuiCommand();
         this.getCommand("match").setExecutor(handlerCommand);
         //开启adventure支持ui
         this.adventure = BukkitAudiences.create(this);
+
         getLogger().info("匹配插件加载成功!");
     }
 
@@ -73,6 +69,10 @@ public class MatchGame extends JavaPlugin {
         if(matchGame != null)
             return matchGame;
         return null;
+    }
+
+    public MatchLobby getMatchLobby() {
+        return matchLobby;
     }
 
     public HashMap<String, BaseCommand> getCommands() {

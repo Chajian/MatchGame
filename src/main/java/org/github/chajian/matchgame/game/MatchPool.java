@@ -1,7 +1,9 @@
 package org.github.chajian.matchgame.game;
 
 import org.bukkit.entity.Player;
-import org.github.chajian.matchgame.bar.NoteBar;
+import org.github.chajian.matchgame.bar.BaseBar;
+import org.github.chajian.matchgame.board.BaseScore;
+import org.screamingsandals.bedwars.api.BedwarsAPI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,15 @@ public class MatchPool {
     private String name;
     /*游戏id*/
     private String gameId;
-    /*提醒消息*/
-    private NoteBar noteBar;
+    /*进度条*/
+    private BaseBar baseBar;
+    /*记分板*/
+    private BaseScore baseScore;
+    /*起床api*/
+    BedwarsAPI bedwarsAPI;
 
+    /*初始化*/
+    public void init(String type){
+    }
 
 }

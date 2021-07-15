@@ -31,7 +31,7 @@ public class HelpCommand extends BaseCommand {
 
     public void sendHelp(Player player){
         player.sendMessage("--------"+"匹配插件"+"--------");
-        player.sendMessage("match join 打开匹配界面");
+        player.sendMessage("match gui打开匹配界面");
 
     }
 }

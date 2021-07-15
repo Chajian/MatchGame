@@ -94,6 +94,13 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.screamingsandals.bedwars</groupId>
+      <artifactId>BedWars-API</artifactId>
+      <version>0.2.11-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/BedWars-API-0.2.11-SNAPSHOT.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
     <java.version>8</java.version>

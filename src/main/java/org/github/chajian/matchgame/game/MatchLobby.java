@@ -1,8 +1,14 @@
 package org.github.chajian.matchgame.game;
 
+import org.bukkit.Bukkit;
 import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.github.chajian.matchgame.MatchGame;
+import org.github.chajian.matchgame.bar.BaseBar;
 import org.github.chajian.matchgame.data.define.MatchModel;
+import org.github.chajian.matchgame.gui.BaseGui;
 
 import java.util.HashMap;
 
@@ -32,20 +38,27 @@ import java.util.HashMap;
  *
  */
 public class MatchLobby {
+    boolean supportBedWar;
+    boolean supportPushCar;
     //参与匹配的玩家
     static HashMap<String,MatchPool> poolHashMap = new HashMap<String,MatchPool>();
     //游戏模式
     static MatchModel model = MatchModel.VIOLENT;
 
+    public MatchLobby() {
+        init();
+    }
+
+    //初始化
+    public void init(){
+        checkGame();
+    }
     public void join(Player player){
 
     }
-
     public void leave(Player player){
 
     }
-
-
     /**
      * 匹配开始
      */
@@ -53,4 +66,26 @@ public class MatchLobby {
 
     }
 
+    /**
+     * 检查是否支持小游戏
+     */
+    public void checkGame(){
+        PluginManager pluginManager = MatchGame.getMatchGame().getServer().getPluginManager();
+        //检测是否支持小游戏
+        String bedwars = "BedWars";
+        String pushcar = "PushCar";
+        if(pluginManager.isPluginEnabled(bedwars))
+            supportBedWar = true;
+        //检测是否支持推车
+        if(pluginManager.isPluginEnabled(pushcar))
+            supportPushCar = true;
+    }
+
+    public boolean isSupportBedWar() {
+        return supportBedWar;
+    }
+
+    public boolean isSupportPushCar() {
+        return supportPushCar;
+    }
 }

@@ -20,8 +20,8 @@ import java.util.List;
  */
 @Data
 public abstract class BaseCommand{
-    private static final String ADMIN_PERMISSION= "match.game.admin";
-    private static final String OTHER_STARTS_PERMISSION = "match.game.otherstats";
+    protected static final String ADMIN_PERMISSION= "match.game.admin";
+    protected static final String OTHER_STARTS_PERMISSION = "match.game.otherstats";
 
     private String name;
     private String permission;

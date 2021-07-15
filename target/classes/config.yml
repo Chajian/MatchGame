@@ -1,0 +1,21 @@
+gui:
+  -
+    title: "单人匹配"
+    lore:
+      - "起床战争"
+      - "人数%s/%s"
+    type: bedwar
+    itemtype: BLACK_BED
+    itemon: '2'
+  -
+    title: "单人匹配"
+    lore:
+      - "老汉推车"
+      - "人数%s/%s"
+    type: pushcar
+    itemtype: MINECART
+    itemon: '3'
+  -
+    title: "边框"
+    itemtype: WHITE_STAINED_GLASS_PANE
+    itemon: '1'
