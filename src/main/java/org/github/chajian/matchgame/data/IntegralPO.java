@@ -10,14 +10,13 @@ import lombok.NoArgsConstructor;
  * @author Chajian
  *
  */
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 public class IntegralPO {
+    int id;
     /*玩家名*/
-    String palyerName;
+    String playerName;
     /*游戏代码*/
-    String gameId;
+    String gameName;
     /*积分*/
     int score;
     /*胜场*/

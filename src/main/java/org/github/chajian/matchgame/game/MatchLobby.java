@@ -47,14 +47,21 @@ public class MatchLobby {
 
     public MatchLobby() {
         init();
+        //生成对应的匹配池
+        if(supportBedWar){
+            MatchPool matchPool = new MatchPool("bedwar");
+            poolHashMap.put(matchPool.getGameId(),matchPool);
+        }
     }
 
     //初始化
     public void init(){
         checkGame();
     }
-    public void join(Player player){
-
+    public void join(Player player,String gameId){
+        if(existGame(gameId)){
+            poolHashMap.get(gameId).joinPlayer(player);
+        }
     }
     public void leave(Player player){
 
@@ -64,6 +71,15 @@ public class MatchLobby {
      */
     public void start(){
 
+    }
+
+    /**
+     * 判断小游戏是否存在
+     * @param gameName 小游戏名
+     * @return
+     */
+    public boolean existGame(String gameName){
+        return poolHashMap.get(gameName) != null;
     }
 
     /**

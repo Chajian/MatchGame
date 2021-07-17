@@ -3,6 +3,7 @@ package org.github.chajian.matchgame.bar;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Player;
 
 /**
  *基础的递减Bar
@@ -44,4 +45,10 @@ public abstract class BaseBar {
         bossBar.setVisible(false);
         Bukkit.removeBossBar(namespacedKey);
     }
+
+    /**
+     * 将bar展示给玩家
+     * @param player 玩家
+     */
+    public abstract void show(Player player);
 }

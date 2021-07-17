@@ -1,9 +1,13 @@
 package org.github.chajian.matchgame.board;
 
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.github.chajian.matchgame.MatchGame;
+import org.github.chajian.matchgame.data.config.Configurator;
+
+import java.util.List;
 
 /**
  * 大厅计分板
@@ -19,29 +23,33 @@ public class LobbyScoreBoard extends BaseScore{
     @Override
     void init() {
         scoreboard = MatchGame.getMatchGame().getServer().getScoreboardManager().getNewScoreboard();
-        Objective title = scoreboard.registerNewObjective("title","title");
-
+        //读取config配置
+        YamlConfiguration yamlConfiguration = Configurator.getConfigurator().getConfig();
+        Objective title = scoreboard.registerNewObjective("title","title",yamlConfiguration.getString("lobbyscore.title"));
+        List<String> infos = (List<String>) yamlConfiguration.getList("lobbyscore.lore");
+        infos.forEach(s -> {
+            Objective objective = scoreboard.registerNewObjective("item","item",s);
+        });
         title.setDisplaySlot(DisplaySlot.SIDEBAR);
-        title.setDisplayName("匹配中请稍候");
     }
 
     @Override
-    void show(Player player) {
+    public void show(Player player) {
         player.setScoreboard(scoreboard);
     }
 
     @Override
-    void hide(Player player) {
+    public void hide(Player player) {
         player.setScoreboard(null);
     }
 
     @Override
-    void update() {
+    public void update() {
 
     }
 
     @Override
-    void readSql() {
+    public void readSql() {
 
     }
 }

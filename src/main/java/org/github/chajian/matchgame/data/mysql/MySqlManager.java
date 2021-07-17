@@ -17,7 +17,7 @@ public class MySqlManager {
     private static MySqlManager mySqlManager;
 
     private MySqlManager() throws IOException {
-        String resource = "org/mybatis/example/mybatis-config.xml";
+        String resource = "org/mybatis/match/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         this.sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     }
@@ -28,5 +28,9 @@ public class MySqlManager {
             mySqlManager = new MySqlManager();
 
         return mySqlManager;
+    }
+
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
     }
 }

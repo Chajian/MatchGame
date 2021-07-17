@@ -14,9 +14,9 @@ import lombok.Data;
 public enum GameModel {
     CONFRONTATION("对抗模式",0);
 
-    //模式名称
+    //模式名称显示给用户
     private String name;
-    //模式代码
+    //模式代码存储在数据库中,和用于逻辑判断
     private int code;
 
     public String getName() {

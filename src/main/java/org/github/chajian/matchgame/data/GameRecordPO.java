@@ -19,7 +19,7 @@ public class GameRecordPO {
     //玩家名称
     private String palyerName;
     //游戏id
-    private String gameId;
+    private String gameName;
     //得分
     private int score;
     //游戏模式
@@ -29,7 +29,7 @@ public class GameRecordPO {
     //死亡数
     private int deaths;
     //时间戳存玩家在游戏中的游玩时间
-    private Timestamp timestamp;
+    private Timestamp time;
 
     //其他信息
     private HashMap<String,Object> othersInfo = new HashMap<String, Object>();

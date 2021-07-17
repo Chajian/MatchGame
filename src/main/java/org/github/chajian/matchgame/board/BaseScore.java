@@ -19,12 +19,12 @@ public abstract class BaseScore {
     //初始化
     abstract void init();
     //展示给玩家
-    abstract void show(Player player);
+    public abstract void show(Player player);
     //隐藏记分板
-    abstract void hide(Player player);
+    public abstract void hide(Player player);
     //更新记分板
-    abstract void update();
+    public abstract void update();
     //读取数据库数据
-    abstract void readSql();
+    public abstract void readSql();
 
 }

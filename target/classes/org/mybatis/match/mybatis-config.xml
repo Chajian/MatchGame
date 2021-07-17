@@ -3,6 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"></setting>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="IntegralPO" type="org.github.chajian.matchgame.data.IntegralPO"/>
+    </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -10,11 +17,12 @@
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/matchgame"/>
                 <property name="username" value="root"/>
-                <property name="password" value="123456789"/>
+                <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="org/mybatis/match/mapper/PlayerMapper.xml"/>
+        <mapper resource="org/github/chajian/matchgame/mapper/IntegralMapper.xml"/>
     </mappers>
+
 </configuration>

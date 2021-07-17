@@ -4,18 +4,26 @@ gui:
     lore:
       - "起床战争"
       - "人数%s/%s"
-    type: bedwar
+    gameid: bedwar
     itemtype: BLACK_BED
-    itemon: '2'
+    on: 2
   -
     title: "单人匹配"
     lore:
       - "老汉推车"
       - "人数%s/%s"
-    type: pushcar
+    gameid: pushcar
     itemtype: MINECART
-    itemon: '3'
+    on: 3
   -
     title: "边框"
     itemtype: WHITE_STAINED_GLASS_PANE
-    itemon: '1'
+    on: 1
+lobbyscore:
+  title: "个人%s匹配信息"
+  lore:
+    - "胜: %s"
+    - "败: %s"
+    - "胜率: %s"
+    - "排名: %s"
+    - "%s"

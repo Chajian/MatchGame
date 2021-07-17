@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * 配置器
  * - 单例模式
+ * - 封装读取接口从而.yml自定义变量读取数据库数据
  * @author Chajian
  */
 @Data

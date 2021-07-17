@@ -86,7 +86,7 @@ public class MainGui extends BaseGui {
             GuiItem guiItem = new GuiItem(itemStack);
             char on = String.valueOf(items.get("itemon")).charAt(0);
             //绑定起床点击事件
-            if(items.get("type")!=null && items.get("type").equals("bedwar"))
+            if(items.get("gameid")!=null && items.get("gameid").equals("bedwar"))
                 guiItem.setAction(this::clickBedWar);
             //绑定PatternPane的位置
             ((PatternPane)pane).bindItem(on,guiItem);

@@ -4,10 +4,13 @@ import lombok.NonNull;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.github.chajian.matchgame.command.*;
+import org.github.chajian.matchgame.data.mysql.MySqlManager;
 import org.github.chajian.matchgame.game.MatchLobby;
 import org.github.chajian.matchgame.listener.MyListener;
+import org.github.chajian.matchgame.mapper.IntegralMapper;
 import org.github.chajian.matchgame.runnable.BossBarRunnable;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -20,6 +23,7 @@ public class MatchGame extends JavaPlugin {
     private MatchLobby matchLobby;
     private BossBarRunnable bossbarRunnable;
     private BukkitAudiences adventure;
+    private MySqlManager mySqlManager;
 
     public @NonNull BukkitAudiences adventure() {
         if(this.adventure == null) {
@@ -45,6 +49,13 @@ public class MatchGame extends JavaPlugin {
     public void onEnable() {
         matchGame = this;
         commands = new HashMap<>();
+        //注册数据库
+        try {
+            mySqlManager = MySqlManager.getMySqlManager();
+            IntegralMapper integralMapper = mySqlManager.getSqlSessionFactory().openSession().getMapper(IntegralMapper.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //注册大厅
         matchLobby = new MatchLobby();
         //注册监听
