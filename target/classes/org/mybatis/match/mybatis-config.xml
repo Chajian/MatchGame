@@ -9,6 +9,7 @@
     </settings>
     <typeAliases>
         <typeAlias alias="IntegralPO" type="org.github.chajian.matchgame.data.IntegralPO"/>
+        <typeAlias alias="GameRecordPo" type="org.github.chajian.matchgame.data.GameRecordPO"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -23,6 +24,7 @@
     </environments>
     <mappers>
         <mapper resource="org/github/chajian/matchgame/mapper/IntegralMapper.xml"/>
+        <mapper resource="org/github/chajian/matchgame/mapper/GameRecordMapper.xml"/>
     </mappers>
 
 </configuration>

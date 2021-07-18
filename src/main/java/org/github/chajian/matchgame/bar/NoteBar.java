@@ -57,6 +57,11 @@ public class NoteBar extends BaseBar{
         return currentProcess == 0;
     }
 
+    @Override
+    public void show(Player player) {
+        bossBar.addPlayer(player);
+    }
+
 //    /**
 //     * 设置bar的进度条
 //     * @param num 数值

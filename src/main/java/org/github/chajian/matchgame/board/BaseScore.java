@@ -24,7 +24,5 @@ public abstract class BaseScore {
     public abstract void hide(Player player);
     //更新记分板
     public abstract void update();
-    //读取数据库数据
-    public abstract void readSql();
 
 }

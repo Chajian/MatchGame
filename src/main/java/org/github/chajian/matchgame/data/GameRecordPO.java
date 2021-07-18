@@ -21,6 +21,8 @@ public class GameRecordPO {
     //玩家名称
     private String palyerName;
     //游戏id
+    private String gameId;
+    //竞技场名
     private String gameName;
     //得分
     private int score;

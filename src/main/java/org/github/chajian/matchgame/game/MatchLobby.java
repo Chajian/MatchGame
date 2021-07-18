@@ -9,6 +9,7 @@ import org.github.chajian.matchgame.MatchGame;
 import org.github.chajian.matchgame.bar.BaseBar;
 import org.github.chajian.matchgame.data.define.MatchModel;
 import org.github.chajian.matchgame.gui.BaseGui;
+import org.screamingsandals.bedwars.api.BedwarsAPI;
 
 import java.util.HashMap;
 
@@ -44,6 +45,7 @@ public class MatchLobby {
     static HashMap<String,MatchPool> poolHashMap = new HashMap<String,MatchPool>();
     //游戏模式
     static MatchModel model = MatchModel.VIOLENT;
+
 
     public MatchLobby() {
         init();

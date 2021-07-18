@@ -16,7 +16,7 @@ public class IntegralPO {
     /*玩家名*/
     String playerName;
     /*游戏代码*/
-    String gameName;
+    String gameId;
     /*积分*/
     int score;
     /*胜场*/

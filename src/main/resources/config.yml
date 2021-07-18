@@ -22,8 +22,7 @@ gui:
 lobbyscore:
   title: "个人%s匹配信息"
   lore:
-    - "胜: %s"
-    - "败: %s"
-    - "胜率: %s"
-    - "排名: %s"
-    - "%s"
+    - "胜: %wins"
+    - "败: %losers"
+    - "胜率: %winrate"
+    - "排名: %rank"

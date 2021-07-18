@@ -1,13 +1,13 @@
 package org.github.chajian.matchgame.board;
 
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.github.chajian.matchgame.MatchGame;
+import org.github.chajian.matchgame.data.MatchVariable;
 import org.github.chajian.matchgame.data.config.Configurator;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 大厅计分板
@@ -18,23 +18,23 @@ import java.util.List;
  * @author Chajian
  */
 public class LobbyScoreBoard extends BaseScore{
-
+    Objective title;
 
     @Override
     void init() {
-        scoreboard = MatchGame.getMatchGame().getServer().getScoreboardManager().getNewScoreboard();
-        //读取config配置
-        YamlConfiguration yamlConfiguration = Configurator.getConfigurator().getConfig();
-        Objective title = scoreboard.registerNewObjective("title","title",yamlConfiguration.getString("lobbyscore.title"));
-        List<String> infos = (List<String>) yamlConfiguration.getList("lobbyscore.lore");
-        infos.forEach(s -> {
-            Objective objective = scoreboard.registerNewObjective("item","item",s);
-        });
-        title.setDisplaySlot(DisplaySlot.SIDEBAR);
     }
 
     @Override
     public void show(Player player) {
+        scoreboard = MatchGame.getMatchGame().getServer().getScoreboardManager().getNewScoreboard();
+        title = scoreboard.registerNewObjective("title","title",Configurator.getConfigurator().getConfig().getString("lobbyscore.title"));
+        //读取lore信息并转成对应玩家的数据
+        List<String> list = (List<String>) Configurator.getConfigurator().getConfig().getList("lobbyscore.lore");
+        for(int i = 0 ; i < list.size() ; i++){
+            String s = list.get(i);
+            String info = MatchVariable.getMatchVariable("bedwar").replace(s,player.getName(),"bedwar");
+            scoreboard.registerNewObjective("lore"+i,"lore"+i,info);
+        }
         player.setScoreboard(scoreboard);
     }
 
@@ -48,8 +48,4 @@ public class LobbyScoreBoard extends BaseScore{
 
     }
 
-    @Override
-    public void readSql() {
-
-    }
 }

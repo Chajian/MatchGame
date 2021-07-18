@@ -7,7 +7,7 @@ import org.github.chajian.matchgame.bar.BaseBar;
 import org.github.chajian.matchgame.bar.NoteBar;
 import org.github.chajian.matchgame.board.BaseScore;
 import org.github.chajian.matchgame.board.LobbyScoreBoard;
-import org.screamingsandals.bedwars.api.BedwarsAPI;
+import org.github.chajian.matchgame.game.api.GameApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,8 @@ public class MatchPool {
     private BaseBar baseBar;
     /*记分板*/
     private BaseScore baseScore;
-    /*起床api*/
-    BedwarsAPI bedwarsAPI;
+    private GameApi gameApi;
+
 
     public MatchPool(String type) {
         init(type);

@@ -6,7 +6,7 @@
     <resultMap id="IntegralMap" type="IntegralPO">
         <id column="id" property="id"/>
         <result column="player_name" property="playerName"/>
-        <result column="game_name" property="gameName"/>
+        <result column="gameId" property="gameId"/>
         <result column="score" property="score"/>
         <result column="wins" property="wins"/>
         <result column="losers" property="losers"/>
