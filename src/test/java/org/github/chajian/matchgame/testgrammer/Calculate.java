@@ -1,6 +1,7 @@
 package org.github.chajian.matchgame.testgrammer;
 
 import lombok.extern.slf4j.Slf4j;
+import org.bukkit.entity.Player;
 import org.junit.Test;
 
 import java.util.regex.Matcher;
@@ -25,13 +26,12 @@ public class Calculate {
     }
 
     @Test
-    public void c(){
-        String rule = "%.*%";
-        String input = "slkjdfljsd%player%ksjdlkfjsdf";
-        Pattern p = Pattern.compile(rule);
-        Matcher m = p.matcher(input);
-        if(m.find())
-            log.info("匹配的消息:"+m.group().replaceAll("%",""));
+    public void d(){
+        int i = 48;
+        char g = (char) i;
+        log.info("info:"+g);
     }
+
+
 
 }

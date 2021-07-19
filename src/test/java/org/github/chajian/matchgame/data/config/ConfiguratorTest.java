@@ -29,12 +29,12 @@ public class ConfiguratorTest {
     @Test
     public void read() throws IOException, InvalidConfigurationException {
 //        log.info(System.getProperty("config.yml"));
-        config = new YamlConfiguration();
-        File directory = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");//参数为空
-//        configFile = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");
-        config.load(directory);
-        List<Map<?, ?>> o = config.getMapList("gui");
-        log.info(o.get(0).toString());
+//        config = new YamlConfiguration();
+//        File directory = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");//参数为空
+////        configFile = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");
+//        config.load(directory);
+//        List<Map<?, ?>> o = config.getMapList("gui");
+//        log.info(o.get(0).toString());
     }
 
 }

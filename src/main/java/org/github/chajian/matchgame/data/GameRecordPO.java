@@ -34,8 +34,6 @@ public class GameRecordPO {
     private int deaths;
     //时间戳存玩家在游戏中的游玩时间
     private Timestamp time;
-    //其他信息
-    private HashMap<String,Object> othersInfo = new HashMap<String, Object>();
 
 
 }

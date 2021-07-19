@@ -35,6 +35,14 @@ public class MatchPool {
         init(type);
     }
 
+    /**
+     * 开始匹配
+     * - 分配玩家和队伍
+     */
+    public void startMatch(){
+
+    }
+
     /*初始化*/
     public void init(String type){
         switch (type){
@@ -57,8 +65,40 @@ public class MatchPool {
      * @param player
      */
     public void joinPlayer(Player player){
-        baseScore.show(player);
-        player.sendMessage("您已加入匹配!");
+
+        if(!containPlayer(player)) {
+            players.add(player);
+            baseScore.show(player);
+            player.sendMessage("您已加入匹配!");
+        }
+        else{
+            player.sendMessage("您已经加入了一场匹配请先退出");
+        }
+    }
+
+    /**
+     * 玩家离开
+     * @param player
+     */
+    public void leavePlayer(Player player){
+        if (containPlayer(player)){
+            baseScore.hide(player);
+            player.sendMessage("您已经离开了!");
+        }
+    }
+
+    /**
+     * 获取玩家是否存在列表中
+     * @param player 玩家名
+     * @return
+     */
+    public boolean containPlayer(Player player){
+        for(Player player1:players){
+            if(player1.getName().equals(player.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

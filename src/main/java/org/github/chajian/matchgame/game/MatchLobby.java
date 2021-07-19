@@ -1,17 +1,12 @@
 package org.github.chajian.matchgame.game;
 
-import org.bukkit.Bukkit;
-import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.scoreboard.ScoreboardManager;
 import org.github.chajian.matchgame.MatchGame;
-import org.github.chajian.matchgame.bar.BaseBar;
 import org.github.chajian.matchgame.data.define.MatchModel;
-import org.github.chajian.matchgame.gui.BaseGui;
-import org.screamingsandals.bedwars.api.BedwarsAPI;
 
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 匹配大厅
@@ -60,13 +55,32 @@ public class MatchLobby {
     public void init(){
         checkGame();
     }
+    //加入匹配
     public void join(Player player,String gameId){
         if(existGame(gameId)){
             poolHashMap.get(gameId).joinPlayer(player);
         }
     }
+    //离开匹配
     public void leave(Player player){
+        String gameName = getGameNameByPlayer(player);
+        if (gameName != null){
+            poolHashMap.get(gameName).leavePlayer(player);
+        }
+    }
 
+    /**
+     * 通过玩家获取游戏名
+     * @param player 玩家
+     * @return
+     */
+    public String getGameNameByPlayer(Player player){
+        AtomicReference<String> game = null;
+        poolHashMap.forEach((s, matchPool) -> {
+            if (matchPool.containPlayer(player))
+                game.set(s);
+        });
+        return game.get();
     }
     /**
      * 匹配开始

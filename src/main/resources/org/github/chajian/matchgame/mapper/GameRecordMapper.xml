@@ -13,7 +13,6 @@
         <result column="kills" property="kills"/>
         <result column="deaths" property="deaths"/>
         <result column="time" property="time"/>
-        <result column="others_info" property="othersInfo"/>
     </resultMap>
 
     <select id="selectGameRecordByPlayerAndGame" resultMap="GameRecordMap">

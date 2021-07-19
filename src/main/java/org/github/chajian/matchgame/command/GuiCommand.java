@@ -32,7 +32,7 @@ public class GuiCommand extends BaseCommand{
     }
 
     public void initGui(){
-        if(baseGuiHashMap.get("main") == null) {
+        if(baseGuiHashMap.get("main") == null||baseGuiHashMap.size()<1) {
             MainGui mainGui = new MainGui();
             baseGuiHashMap.put("main", mainGui);
         }

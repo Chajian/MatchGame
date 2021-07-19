@@ -1,3 +1,10 @@
-<gui rows="6" title="匹配大厅" field="chestGui">
-
-</gui>
+<patternpane x="0" y="0" length="9" height="3">
+    <pattern>
+        <row>111111111</row>
+        <row>100020001</row>
+        <row>111111111</row>
+    </pattern>
+    <binding char='1'>
+        <item type="stone" />
+    </binding>
+</patternpane>

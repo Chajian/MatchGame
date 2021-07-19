@@ -1,9 +1,15 @@
 package org.github.chajian.matchgame.command;
 
+import com.github.stefvanschie.inventoryframework.gui.GuiItem;
+import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
+import com.github.stefvanschie.inventoryframework.pane.PatternPane;
+import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
+import org.bukkit.Material;
 import org.bukkit.Note;
 import org.bukkit.boss.BarColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.github.chajian.matchgame.MatchGame;
 import org.github.chajian.matchgame.bar.NoteBar;
 import org.github.chajian.matchgame.gui.MainGui;
@@ -34,8 +40,18 @@ public class TestCommand extends BaseCommand {
                 showBarToPlayer(player);
             }
             else if(label.equals("gui")){
-                MainGui mainGui = new MainGui();
-                mainGui.getChestGui().show(player);
+                //测试gui
+                ChestGui chestGui = new ChestGui(5,"test");
+                Pattern pattern = new Pattern(
+                        "111111111",
+                        "123000001",
+                        "100000001",
+                        "111111111"
+                );
+                PatternPane pane = new PatternPane(0, 0, 9, 4, pattern);
+                pane.bindItem('1', new GuiItem(new ItemStack(Material.GRAY_STAINED_GLASS_PANE)));
+                chestGui.addPane(pane);
+                chestGui.show(player);
             }
         }
 

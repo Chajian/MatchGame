@@ -12,6 +12,6 @@
         <result column="losers" property="losers"/>
     </resultMap>
     <select id="selectByPlayerAndGameId" resultMap="IntegralMap">
-        select * from integral where player_name = #{playerName} and game_name = #{gameName}
+        select * from integral where player_name = #{playerName} and game_id = #{gameId}
     </select>
 </mapper>

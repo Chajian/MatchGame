@@ -2,7 +2,9 @@ F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchga
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\command\HelpCommand.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\game\MatchLobby.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\MatchGame.java
+F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\game\api\GameApi.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\command\BaseCommand.java
+F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\mapper\GameRecordMapper.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\listener\MyListener.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\data\mysql\MySqlManager.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\gui\MainGui.java
@@ -22,6 +24,7 @@ F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchga
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\listener\event\PlayerMatchEvent.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\data\MatchVariable.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\gui\BaseGui.java
+F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\game\api\BedwarsApi.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\data\IntegralPO.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\mapper\IntegralMapper.java
 F:\backed\Eback\study\java\mc\MatchGame\src\main\java\org\github\chajian\matchgame\command\GuiCommand.java

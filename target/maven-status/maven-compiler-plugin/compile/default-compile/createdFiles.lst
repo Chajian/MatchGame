@@ -1,3 +1,4 @@
+org\github\chajian\matchgame\game\api\GameApi.class
 org\github\chajian\matchgame\bar\NoteBar.class
 org\github\chajian\matchgame\MatchGame.class
 org\github\chajian\matchgame\bar\BaseBar.class
@@ -8,9 +9,11 @@ org\github\chajian\matchgame\board\LobbyScoreBoard.class
 org\github\chajian\matchgame\data\define\GameModel.class
 org\github\chajian\matchgame\game\MatchPool.class
 org\github\chajian\matchgame\command\HandlerCommand.class
+org\github\chajian\matchgame\mapper\GameRecordMapper.class
 org\github\chajian\matchgame\gui\MainGui.class
 org\github\chajian\matchgame\command\HelpCommand.class
 org\github\chajian\matchgame\data\define\MatchModel.class
+org\github\chajian\matchgame\game\api\BedwarsApi.class
 org\github\chajian\matchgame\listener\event\PlayerMatchEvent.class
 org\github\chajian\matchgame\board\BaseScore.class
 org\github\chajian\matchgame\data\MatchVariable.class

@@ -1,24 +1,24 @@
 gui:
   -
+    title: "边框"
+    itemtype: WHITE_STAINED_GLASS_PANE
+    itemon: '1'
+  -
     title: "单人匹配"
     lore:
       - "起床战争"
-      - "人数%s/%s"
+      - "人数%joinedPlayer%/%gameMaxPlayer%"
     gameid: bedwar
     itemtype: BLACK_BED
-    on: 2
+    itemon: '2'
   -
     title: "单人匹配"
     lore:
       - "老汉推车"
       - "人数%s/%s"
     gameid: pushcar
-    itemtype: MINECART
-    on: 3
-  -
-    title: "边框"
-    itemtype: WHITE_STAINED_GLASS_PANE
-    on: 1
+    itemtype: CHEST_MINECART
+    itemon: '3'
 lobbyscore:
   title: "个人%s匹配信息"
   lore:

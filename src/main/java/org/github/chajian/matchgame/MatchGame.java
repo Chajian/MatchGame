@@ -22,26 +22,26 @@ public class MatchGame extends JavaPlugin {
     private HashMap<String,BaseCommand> commands;//指令集
     private MatchLobby matchLobby;
     private BossBarRunnable bossbarRunnable;
-    private BukkitAudiences adventure;
+//    private BukkitAudiences adventure;
     private MySqlManager mySqlManager;
 
-    public @NonNull BukkitAudiences adventure() {
-        if(this.adventure == null) {
-            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
-        }
-        return this.adventure;
-    }
+//    public @NonNull BukkitAudiences adventure() {
+//        if(this.adventure == null) {
+//            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
+//        }
+//        return this.adventure;
+//    }
 
     @Override
     public void onDisable() {
         bossbarRunnable.cancel();
         bossbarRunnable = null;
         commands = null;
-        //关闭adventure
-        if(this.adventure != null) {
-            this.adventure.close();
-            this.adventure = null;
-        }
+//        //关闭adventure
+//        if(this.adventure != null) {
+//            this.adventure.close();
+//            this.adventure = null;
+//        }
         getLogger().info("匹配插件卸载成功!");
     }
 
@@ -69,8 +69,8 @@ public class MatchGame extends JavaPlugin {
         new TestCommand();
         new GuiCommand();
         this.getCommand("match").setExecutor(handlerCommand);
-        //开启adventure支持ui
-        this.adventure = BukkitAudiences.create(this);
+//        //开启adventure支持ui
+//        this.adventure = BukkitAudiences.create(this);
 
         getLogger().info("匹配插件加载成功!");
     }

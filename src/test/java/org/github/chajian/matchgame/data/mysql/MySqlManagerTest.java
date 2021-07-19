@@ -15,14 +15,14 @@ public class MySqlManagerTest {
 
     @Test
     public void test(){
-        try {
-            mySqlManager = MySqlManager.getMySqlManager();
-            IntegralMapper integralMapper = mySqlManager.getSqlSessionFactory().openSession().getMapper(IntegralMapper.class);
-            IntegralPO integralPO = integralMapper.selectByPlayerAndGameId("997","bedwar");
-            System.out.println(integralPO.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mySqlManager = MySqlManager.getMySqlManager();
+//            IntegralMapper integralMapper = mySqlManager.getSqlSessionFactory().openSession().getMapper(IntegralMapper.class);
+//            IntegralPO integralPO = integralMapper.selectByPlayerAndGameId("997","bedwar");
+//            System.out.println(integralPO.toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
