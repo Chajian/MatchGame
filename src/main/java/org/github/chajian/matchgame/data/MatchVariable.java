@@ -1,5 +1,7 @@
 package org.github.chajian.matchgame.data;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+import org.github.chajian.matchgame.MatchGame;
 import org.github.chajian.matchgame.data.mysql.MySqlManager;
 import org.github.chajian.matchgame.game.api.BedwarsApi;
 import org.github.chajian.matchgame.game.api.GameApi;
@@ -8,6 +10,7 @@ import org.github.chajian.matchgame.mapper.IntegralMapper;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,11 +53,11 @@ public class MatchVariable {
         String result = null;
         switch (info){
             case "joinedPlayer":
-                result = String.valueOf(gameApi.getJoinedPlayer(gameName));
+                result = String.valueOf(MatchGame.getMatchGame().getMatchLobby().getPoolHashMap().get(gameName).getPlayers().size());
                 break;
 
             case "gameMaxPlayer":
-                result = String.valueOf(gameApi.getGameMaxPlayer(gameName));
+                result = String.valueOf(MatchGame.getMatchGame().getMatchLobby().getPoolHashMap().get(gameName).getMaxPlayer());
                 break;
             case "kill":
                 break;
@@ -74,7 +77,7 @@ public class MatchVariable {
      * @return
      */
     public String replaceVariableByGameId(String info,String playerName,String gameId){
-        String result = null;
+        String result = info;
         IntegralPO integralPO = integralMapper.selectByPlayerAndGameId(playerName,gameId);
         switch (info){
             case "playerName":
@@ -84,16 +87,18 @@ public class MatchVariable {
             case "gameName":
                 result = gameId;
                 break;
-            case "win":
+            case "wins":
                 result = String.valueOf(integralPO.getWins());
                 break;
-            case "loser":
+            case "losers":
                 result = String.valueOf(integralPO.getLosers());
                 break;
             case "winrate":
-                result = String.valueOf(integralPO.getWins()/(integralPO.getWins()+integralPO.getLosers()));
+                if(integralPO.getWins()!=0)
+                    result = String.valueOf(integralPO.getWins()/(integralPO.getWins()+integralPO.getLosers())*100)+"%";
+                result = "0%";
                 break;
-        }
+    }
         return result;
     }
 
@@ -110,14 +115,26 @@ public class MatchVariable {
     //将变量替换成相应的数据
     public String replace(String s,String playerName,String gameName){
         //提取关键词
-        String feat = fetchFeat(s).replaceAll("%","");
-        if(Arrays.asList(variable).contains(feat)){
-            String result = s.replaceAll(feat,replaceVariableByGameId(feat,playerName,gameName));
-            if (result == null)
-                return s.replaceAll(feat,replaceVariableByGameName(feat,playerName,gameName));
-            return result;
+        String feat = fetchFeat(s);
+        if(feat != null) {
+            feat = feat.replaceAll("%", "");
+            boolean iscontains = Arrays.asList(variable).contains(feat);
+            if (iscontains) {
+                String result = s.replaceAll(feat, replaceVariableByGameId(feat, playerName, gameName)).replaceAll("%","");
+                return result;
+            }
         }
         return null;
+    }
+
+    //将变量替换成相应的数据
+    public List<String> replace(List<String> s,String playerName,String gameName){
+        for(int i = 0 ; i< s.size() ; i++){
+            String info = s.get(i);
+            info = replace(info,playerName,gameName);
+            s.set(i,info);
+        }
+        return s;
     }
 
     public static MatchVariable getMatchVariable(String type) {

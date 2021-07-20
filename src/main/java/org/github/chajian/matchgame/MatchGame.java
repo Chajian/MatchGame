@@ -58,6 +58,7 @@ public class MatchGame extends JavaPlugin {
         }
         //注册大厅
         matchLobby = new MatchLobby();
+        matchLobby.runTaskTimer(this,20L,20L);
         //注册监听
         getServer().getPluginManager().registerEvents(new MyListener(),this);
         //初始化NoteBar线程

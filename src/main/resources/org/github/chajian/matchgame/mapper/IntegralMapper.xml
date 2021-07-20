@@ -14,4 +14,7 @@
     <select id="selectByPlayerAndGameId" resultMap="IntegralMap">
         select * from integral where player_name = #{playerName} and game_id = #{gameId}
     </select>
+    <insert id="registerIntegral" parameterType="org.github.chajian.matchgame.data.IntegralPO">
+        insert into integral (player_name,game_id) values (#{playerName},#{gameId})
+    </insert>
 </mapper>

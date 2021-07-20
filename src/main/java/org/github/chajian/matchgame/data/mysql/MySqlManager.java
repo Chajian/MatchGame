@@ -1,6 +1,7 @@
 package org.github.chajian.matchgame.data.mysql;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -28,6 +29,10 @@ public class MySqlManager {
             mySqlManager = new MySqlManager();
 
         return mySqlManager;
+    }
+
+    public SqlSession getSqlSession(){
+         return mySqlManager.getSqlSessionFactory().openSession();
     }
 
     public SqlSessionFactory getSqlSessionFactory() {

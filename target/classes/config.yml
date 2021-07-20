@@ -20,9 +20,21 @@ gui:
     itemtype: CHEST_MINECART
     itemon: '3'
 lobbyscore:
-  title: "个人%s匹配信息"
+  title: "个人匹配信息"
   lore:
-    - "胜: %wins"
-    - "败: %losers"
-    - "胜率: %winrate"
-    - "排名: %rank"
+    - "match equit 退出匹配"
+    - "胜: %wins%"
+    - "败: %losers%"
+    - "胜率: %winrate%"
+    - "排名: %rank%"
+#竞技场
+pools:
+  -
+    title: '竞技场名'
+    type: 'bedwar' #竞技场类型
+    max-player: 20 #最多匹配人数
+    min-player: 2  #最少匹配人数
+    timeout: 60
+    varify-time: 10
+
+

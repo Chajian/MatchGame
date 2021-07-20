@@ -2,6 +2,7 @@ package org.github.chajian.matchgame.game;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.github.chajian.matchgame.MatchGame;
 import org.github.chajian.matchgame.data.define.MatchModel;
 
@@ -33,20 +34,20 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  *
  */
-public class MatchLobby {
+public class MatchLobby extends BukkitRunnable {
     boolean supportBedWar;
     boolean supportPushCar;
     //参与匹配的玩家
-    static HashMap<String,MatchPool> poolHashMap = new HashMap<String,MatchPool>();
+    HashMap<String,MatchPool> poolHashMap = new HashMap<String,MatchPool>();
     //游戏模式
-    static MatchModel model = MatchModel.VIOLENT;
+    MatchModel model = MatchModel.VIOLENT;
 
 
     public MatchLobby() {
         init();
         //生成对应的匹配池
         if(supportBedWar){
-            MatchPool matchPool = new MatchPool("bedwar");
+            MatchPool matchPool = new MatchPool("bedwar",16);
             poolHashMap.put(matchPool.getGameId(),matchPool);
         }
     }
@@ -75,7 +76,7 @@ public class MatchLobby {
      * @return
      */
     public String getGameNameByPlayer(Player player){
-        AtomicReference<String> game = null;
+        AtomicReference<String> game = new AtomicReference<>();
         poolHashMap.forEach((s, matchPool) -> {
             if (matchPool.containPlayer(player))
                 game.set(s);
@@ -119,5 +120,17 @@ public class MatchLobby {
 
     public boolean isSupportPushCar() {
         return supportPushCar;
+    }
+
+    public HashMap<String, MatchPool> getPoolHashMap() {
+        return poolHashMap;
+    }
+
+    //管理Pool
+    @Override
+    public void run() {
+        poolHashMap.forEach((s, matchPool) -> {
+            matchPool.start();
+        });
     }
 }

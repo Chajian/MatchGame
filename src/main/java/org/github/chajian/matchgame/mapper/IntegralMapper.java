@@ -10,4 +10,5 @@ import org.github.chajian.matchgame.data.IntegralPO;
 @Mapper
 public interface IntegralMapper {
     IntegralPO selectByPlayerAndGameId(@Param("playerName") String playerName, @Param("gameId") String gameId);
+    void registerIntegral(IntegralPO integralPO);
 }
