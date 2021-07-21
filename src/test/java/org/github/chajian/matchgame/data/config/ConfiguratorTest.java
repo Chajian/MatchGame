@@ -2,6 +2,7 @@ package org.github.chajian.matchgame.data.config;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.MemorySection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -28,13 +29,15 @@ public class ConfiguratorTest {
 
     @Test
     public void read() throws IOException, InvalidConfigurationException {
-//        log.info(System.getProperty("config.yml"));
-//        config = new YamlConfiguration();
-//        File directory = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");//参数为空
-////        configFile = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");
-//        config.load(directory);
-//        List<Map<?, ?>> o = config.getMapList("gui");
-//        log.info(o.get(0).toString());
+        log.info(System.getProperty("config.yml"));
+        config = new YamlConfiguration();
+        File directory = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\newconfig.yml");//参数为空
+//        configFile = new File("F:\\backed\\Eback\\study\\java\\mc\\MatchGame\\src\\main\\resources\\config.yml");
+        config.load(directory);
+//        ConfigurationSection configurationSection = config.getConfigurationSection("games");
+        List<Object> list = (List<Object>) config.getList("games");
+        Map<String,Object> o = (Map<String, Object>) list.get(0);
+        log.info("config信息:"+o.get("name"));
     }
 
 }

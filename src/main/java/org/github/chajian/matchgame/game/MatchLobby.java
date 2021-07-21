@@ -4,9 +4,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.github.chajian.matchgame.MatchGame;
+import org.github.chajian.matchgame.data.config.Configurator;
 import org.github.chajian.matchgame.data.define.MatchModel;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -45,16 +48,14 @@ public class MatchLobby extends BukkitRunnable {
 
     public MatchLobby() {
         init();
-        //生成对应的匹配池
-        if(supportBedWar){
-            MatchPool matchPool = new MatchPool("bedwar",16);
-            poolHashMap.put(matchPool.getGameId(),matchPool);
-        }
     }
 
     //初始化
     public void init(){
+        //检测是否支持对应的小游戏
         checkGame();
+        //生成对应的匹配池
+        readConfig();
     }
     //加入匹配
     public void join(Player player,String gameId){
@@ -132,5 +133,32 @@ public class MatchLobby extends BukkitRunnable {
         poolHashMap.forEach((s, matchPool) -> {
             matchPool.start();
         });
+    }
+
+    /**
+     * 读取config配置
+     */
+    public void readConfig(){
+        List<Object> list = (List<Object>) Configurator.getConfigurator().getConfig().getList("games");
+        //根据配置生成Pool
+        for(int i = 0 ; i < list.size() ; i++){
+            Map<String,Object> map = (Map<String, Object>) list.get(i);
+            String lobbyType = (String) map.get("gameId");
+            switch (lobbyType){
+                case "bedwar":
+                    if(supportBedWar){
+                        MatchPool matchPool = new MatchPool(map);
+                        poolHashMap.put(lobbyType,matchPool);
+                    }
+                    break;
+
+                case "pushcar":
+                    if(supportPushCar){
+                        MatchPool matchPool = new MatchPool(map);
+                        poolHashMap.put(lobbyType,matchPool);
+                    }
+                    break;
+            }
+        }
     }
 }

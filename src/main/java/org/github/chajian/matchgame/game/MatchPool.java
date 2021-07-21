@@ -9,6 +9,7 @@ import org.github.chajian.matchgame.bar.NoteBar;
 import org.github.chajian.matchgame.board.BaseScore;
 import org.github.chajian.matchgame.board.LobbyScoreBoard;
 import org.github.chajian.matchgame.data.IntegralPO;
+import org.github.chajian.matchgame.data.config.Configurator;
 import org.github.chajian.matchgame.data.define.PoolStatus;
 import org.github.chajian.matchgame.data.mysql.MySqlManager;
 import org.github.chajian.matchgame.game.api.GameApi;
@@ -17,6 +18,7 @@ import org.github.chajian.matchgame.mapper.IntegralMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 匹配池
@@ -48,10 +50,12 @@ public class MatchPool {
     private int currentCount = 0;
     private IntegralMapper integralMapper;
     private SqlSession sqlSession;
+    private Map<String,Object> configInfo;
 
 
-    public MatchPool(String gameId,int maxPlayer) {
-        init(gameId,maxPlayer);
+    public MatchPool(Map<String,Object> gameInfo) {
+        this.configInfo = gameInfo;
+        init();
     }
 
     /**
@@ -109,27 +113,24 @@ public class MatchPool {
     }
 
     /*初始化*/
-    public void init(String type,int maxPlayer){
-        this.gameId = type;
-        switch (type){
-            case "bedwar":
-                name = "起床战争";
-
-                break;
-
-            case "pushcar":
-
-                break;
+    public void init(){
+        //初始化基本信息
+        try {
+            this.gameId = (String) checkAndGet("gameId");
+            this.name = (String) checkAndGet("name");
+            this.maxPlayer = (int)checkAndGet("maxPlayer");
+            this.minPlayer = (int)checkAndGet("minPlayer");
+            this.timeout = (int)checkAndGet("timeout");
+            this.varifyTime = (int)checkAndGet("varifyTime");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        this.maxPlayer = maxPlayer;
-        //初始化进度条和scoreboard
-        baseBar = new NoteBar("起床战争",100, BarColor.BLUE,"剩余%s秒将开始!");
-        baseScore = new LobbyScoreBoard();
-        //初始化状态
-        status = PoolStatus.WAITING;
-        //通过配置文件读取pool设置
-        players = new ArrayList<>();
         currentCount = timeout;
+        status = PoolStatus.WAITING;
+        //初始化scoreboard
+//        baseBar = new NoteBar(name,100, BarColor.BLUE,"剩余%s秒将开始!");
+        baseScore = new LobbyScoreBoard();
+        players = new ArrayList<>();
         //初始化mapper
         try {
             sqlSession = MySqlManager.getMySqlManager().getSqlSession();
@@ -241,6 +242,9 @@ public class MatchPool {
     }
 
 
+
+
+
     /**
      * 玩家加入匹配
      * @param player
@@ -281,6 +285,20 @@ public class MatchPool {
             baseScore.hide(player);
             player.sendMessage("您已经离开了!");
         }
+    }
+
+    /**
+     * 检测并获取配置
+     * @param path 检测地址
+     * @return
+     * @throws Exception
+     */
+    public Object checkAndGet(String path) throws Exception {
+        Object o = configInfo.get(path);
+        if (o == null)
+            throw new Exception("pool配置错误");
+        else
+            return o;
     }
 
     /**
