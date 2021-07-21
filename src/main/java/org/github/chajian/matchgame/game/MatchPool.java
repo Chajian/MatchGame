@@ -32,8 +32,6 @@ public class MatchPool {
     private String name;
     /*游戏id*/
     private String gameId;
-    /*进度条*/
-    private BaseBar baseBar;
     /*记分板*/
     private BaseScore baseScore;
     private GameApi gameApi;
@@ -68,40 +66,25 @@ public class MatchPool {
 
     //更新scoreBoard
     public synchronized void updateBoard(Player player){
-        baseScore.showByStatus(player,status);
-//        switch (status){
-//            case WAITING:
-//
-//                break;
-//
-//            case BEFORE_START:
-//
-//                break;
-//
-//            case START:
-//
-//                break;
-//
-//            case ENDING:
-//
-//                break;
-//        }
+        baseScore.showByStatus(player,status, (Map<String, Object>) configInfo.get("board"));
     }
     //更新进度条
     public synchronized void updateBar(Player player){
+        Map<String,Object> body = (Map<String, Object>) configInfo.get("bar");
+        BaseBar baseBar;
         switch (status){
             case WAITING:
-                baseBar = new NoteBar("温馨提示",10, BarColor.PINK,"在等待匹配期间，并不会影响您正常游戏哦!");
+                baseBar = new NoteBar("温馨提示",10, BarColor.PINK, (String) body.get(status.name()));
                 baseBar.show(player);
                 break;
 
             case BEFORE_START:
-                baseBar = new NoteBar("匹配即将开始",varifyTime,BarColor.GREEN,"匹配还有%s秒即将开始，请做好准备!");
+                baseBar = new NoteBar("匹配即将开始",varifyTime,BarColor.GREEN,(String) body.get(status.name()));
                 baseBar.show(player);
                 break;
 
             case START:
-                baseBar = new NoteBar("匹配开始!",3,BarColor.RED,"匹配已经开始！");
+                baseBar = new NoteBar("匹配开始!",3,BarColor.RED,(String) body.get(status.name()));
                 baseBar.show(player);
                 break;
 
@@ -161,22 +144,7 @@ public class MatchPool {
                 else if(players.size() >= minPlayer){
                     currentCount--;
                 }
-//                if(players.size() >= minPlayer){
-//                    currentCount--;
-//                }
-//                else if(players.size() == maxPlayer){
-//                    currentCount = 0;
-//                }
-//                else if (players.size() >= minPlayer && currentCount <= 0){
-//                    //更新状态和时间，并更新board和进度条
-//                    status = PoolStatus.BEFORE_START;
-//                    currentCount = varifyTime;
-//                    //更新玩家的提示信息
-//                    players.forEach(player -> {
-//                        updateBoard(player);
-//                        updateBar(player);
-//                    });
-//                }
+
 
 
                 break;
@@ -198,22 +166,7 @@ public class MatchPool {
                     currentCount = varifyTime;
                 }
 
-//                if(players.size()>=minPlayer){
-//                    currentCount --;
-//                }
-//                else if(currentCount == 0 && players.size()>= minPlayer){
-//                    status = PoolStatus.START;
-//                    //更新玩家的提示信息
-//                    players.forEach(player -> {
-//                        updateBoard(player);
-//                        updateBar(player);
-//                    });
-//                }
-//                //如果匹配中途有人退出,并且导致无法满足最低开启条件
-//                else{
-//                    status =PoolStatus.WAITING;
-//                    currentCount = varifyTime;
-//                }
+
 
 
                 break;

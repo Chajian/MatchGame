@@ -77,7 +77,6 @@ public class TestCommand extends BaseCommand {
         }
 
 
-//        showBarToPlayer((Player)sender);
         return true;
     }
 

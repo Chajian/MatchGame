@@ -1,8 +1,0 @@
-name: MatchGame
-version: 1.16.2
-main: org.github.chajian.matchgame.MatchGame
-api-version: 1.13
-commands:
-  match:
-    description: 匹配插件的主要指令
-    usage: /<command>

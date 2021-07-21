@@ -13,6 +13,7 @@ import sun.security.krb5.Config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -51,37 +52,18 @@ public class LobbyScoreBoard extends BaseScore{
         }
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         player.setScoreboard(scoreboard);
-//        scoreboard = MatchGame.getMatchGame().getServer().getScoreboardManager().getNewScoreboard();
-//        if(scoreboard.getObjective("lobby") == null)
-//            objective = scoreboard.registerNewObjective("lobby","obj", ChatColor.RED+Configurator.getConfigurator().getConfig().getString("lobbyscore.title"));
-//        else
-//            objective = scoreboard.getObjective("lobby");
-//        //读取lore信息并转成对应玩家的数据
-//        List<String> list = (List<String>) Configurator.getConfigurator().getConfig().getList("lobbyscore.lore");
-//        for(int i = 0 ; i < list.size() ; i++){
-//            String s = list.get(i);
-//            String info = MatchVariable.getMatchVariable("bedwar").replace(s,player.getName(),"bedwar");
-//            Score score;
-//            if(info!=null) {
-//                score = objective.getScore(ChatColor.GREEN + info);
-//            }
-//            else {
-//                score = objective.getScore(ChatColor.GREEN + s);
-//            }
-//            score.setScore(i);
-//        }
-//        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-//        player.setScoreboard(scoreboard);
+
     }
 
     @Override
-    public void showByStatus(Player player, PoolStatus poolStatus) {
+    public void showByStatus(Player player, PoolStatus poolStatus, Map<String,Object> board) {
         String title = "";
         List<String> lore = new ArrayList<>();
+        Map<String,Object> body = (Map<String, Object>) board.get(poolStatus.name());
         switch (poolStatus){
             case WAITING:
-                title = Configurator.getConfigurator().getConfig().getString("lobbyscore.title");
-                lore = (List<String>) Configurator.getConfigurator().getConfig().getList("lobbyscore.lore");
+                title = (String) body.get("title");
+                lore = (List<String>) body.get("lore");
                 show(player,title,lore);
                 break;
 

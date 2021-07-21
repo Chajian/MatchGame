@@ -5,7 +5,6 @@ import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.pane.PatternPane;
 import com.github.stefvanschie.inventoryframework.pane.util.Pattern;
 import org.bukkit.Material;
-import org.bukkit.configuration.MemorySection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -70,10 +69,10 @@ public class MainGui extends BaseGui {
     }
 
     public void readConfig(){
-        List<Map<?,?>> list = Configurator.getConfigurator().getConfig().getMapList("gui");
+        List<Map<?,?>> list = Configurator.getConfigurator().getConfig().getMapList("gui.main");
         for(int i = 0 ; i < list.size() ; i++){
             Map<?,?> items = (Map<?,Object>) list.get(i);
-            ItemStack itemStack = new ItemStack(Material.getMaterial((String) items.get("itemtype"),false));
+            ItemStack itemStack = new ItemStack(Material.getMaterial((String) items.get("itemType"),false));
             ItemMeta itemMeta = itemStack.getItemMeta();
             itemMeta.setDisplayName((String) items.get("title"));
             itemMeta.setLore((List<String>) items.get("lore"));
@@ -82,7 +81,7 @@ public class MainGui extends BaseGui {
             int on = Integer.parseInt((String)items.get("itemon"));
             char item_on = (char) (48+on);
             //绑定起床点击事件
-            if(items.get("gameid")!=null && items.get("gameid").equals("bedwar"))
+            if(items.get("gameId")!=null && items.get("gameId").equals("bedwar"))
                 guiItem.setAction(this::clickBedWar);
             //绑定PatternPane的位置和pane
             ((PatternPane)pane).bindItem(item_on,guiItem);

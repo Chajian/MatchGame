@@ -7,12 +7,12 @@ games:
     timeout: 20 #等待x秒之后进行最低条件的匹配
     varifyTime: 10 #匹配开始之前的确认时间
     bar: #顶部进度条
-      WARTING: "在等待匹配期间，并不会影响您正常游戏哦!"
-      BEFORESTART: "匹配还有%s秒即将开始，请做好准备!"
+      WAITING: "在等待匹配期间，并不会影响您正常游戏哦!"
+      BEFORE_START: "匹配还有%s秒即将开始，请做好准备!"
       START: "匹配已经开始！"
       ENDING:
     board: #计分板
-      WARTING: #等待状态
+      WAITING: #等待状态
         title: "个人匹配信息"
         lore:
           - "match equit 退出匹配"
@@ -20,6 +20,28 @@ games:
           - "败: %losers%"
           - "胜率: %winrate%"
           - "排名: %rank%"
-      BEFORESTART:
+      BEFORE_START:
       START:
       ENDING:
+gui:
+  main:
+    -
+      title: "边框"
+      itemType: WHITE_STAINED_GLASS_PANE
+      itemon: '1'
+    -
+      title: "单人匹配"
+      lore:
+        - "起床战争"
+        - "人数%joinedPlayer%/%gameMaxPlayer%"
+      gameId: bedwar
+      itemType: BLACK_BED
+      itemon: '2'
+    -
+      title: "单人匹配"
+      lore:
+        - "老汉推车"
+        - "人数%s/%s"
+      gameId: pushcar
+      itemType: CHEST_MINECART
+      itemon: '3'
