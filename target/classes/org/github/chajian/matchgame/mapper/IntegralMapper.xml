@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.github.chajian.matchgame.mapper.IntegralMapper">
+    <resultMap id="IntegralMap" type="IntegralPO">
+        <id column="id" property="id"/>
+        <result column="player_name" property="playerName"/>
+        <result column="gameId" property="gameId"/>
+        <result column="score" property="score"/>
+        <result column="wins" property="wins"/>
+        <result column="losers" property="losers"/>
+    </resultMap>
+    <select id="selectByPlayerAndGameId" resultMap="IntegralMap">
+        select * from integral where player_name = #{playerName} and game_id = #{gameId}
+    </select>
+    <insert id="registerIntegral" parameterType="org.github.chajian.matchgame.data.IntegralPO">
+        insert into integral (player_name,game_id) values (#{playerName},#{gameId})
+    </insert>
+</mapper>

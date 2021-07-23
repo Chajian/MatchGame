@@ -5,12 +5,18 @@ import org.screamingsandals.bedwars.api.BedwarsAPI;
 import org.screamingsandals.bedwars.api.Team;
 import org.screamingsandals.bedwars.api.game.Game;
 
+import java.util.List;
+
 /**
  * 起床战争api
  * @author Chajian
  */
 public class BedwarsApi implements GameApi {
     BedwarsAPI bedwarsAPI;
+
+    public BedwarsApi() {
+        this.bedwarsAPI = BedwarsAPI.getInstance();
+    }
 
     @Override
     public void joinGame(Player player,String gameName) {
@@ -62,5 +68,10 @@ public class BedwarsApi implements GameApi {
     public Object getTeam(String gameName) {
         Game game = bedwarsAPI.getGameByName(gameName);
         return game.getAvailableTeams();
+    }
+
+    @Override
+    public List<Game> getGames() {
+        return bedwarsAPI.getGames();
     }
 }

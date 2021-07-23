@@ -12,8 +12,12 @@ import org.github.chajian.matchgame.data.IntegralPO;
 import org.github.chajian.matchgame.data.config.Configurator;
 import org.github.chajian.matchgame.data.define.PoolStatus;
 import org.github.chajian.matchgame.data.mysql.MySqlManager;
+import org.github.chajian.matchgame.game.api.BedwarsApi;
 import org.github.chajian.matchgame.game.api.GameApi;
 import org.github.chajian.matchgame.mapper.IntegralMapper;
+import org.screamingsandals.bedwars.api.Team;
+import org.screamingsandals.bedwars.api.game.Game;
+import org.screamingsandals.bedwars.api.game.GameStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -99,6 +103,7 @@ public class MatchPool {
     public void init(){
         //初始化基本信息
         try {
+            this.gameApi = new BedwarsApi();
             this.gameId = (String) checkAndGet("gameId");
             this.name = (String) checkAndGet("name");
             this.maxPlayer = (int)checkAndGet("maxPlayer");
@@ -173,14 +178,20 @@ public class MatchPool {
 
             case START:
                 //做一些匹配的操作
-
-
+                MatchGame();
+                status=PoolStatus.ENDING;
 
 
                 break;
 
             case ENDING:
-
+                //判断是否有处于WAITING状态的game
+                //有的话就改变状态为WAITING
+                List<Game> games = (List<Game>) gameApi.getGames();
+                games.forEach(game -> {
+                    if(game.getStatus()==GameStatus.WAITING)
+                        status=PoolStatus.WAITING;
+                });
                 break;
         }
 
@@ -191,6 +202,56 @@ public class MatchPool {
      * 进行匹配
      */
     public void MatchGame(){
+        //读取所有人的积分
+        List<IntegralPO> pos = new ArrayList<>();
+        players.forEach(player -> {
+            IntegralPO p = integralMapper.selectByPlayerAndGameId(player.getName(),this.gameId);
+            pos.add(p);
+        });
+        //根据战力升序排序
+        //采用插入排序
+        for(int i = 1 ; i < pos.size()-1 ; i++){
+            int temp = pos.get(i).getScore();
+            int tempOn = i;
+            int j = i;
+            for(; j>0&&temp<pos.get(j-1).getScore() ;j--){
+                pos.set(j,pos.get(j-1));
+                players.set(j,players.get(j-1));
+            }
+            if(i!=j) {
+                pos.set(j, pos.get(tempOn));
+                players.set(j,players.get(tempOn));
+            }
+        }
+        //获取游戏
+        List<Game> games = (List<Game>) gameApi.getGames();
+        //获取未运行的游戏
+        for (Game game : games) {
+            if(game.getStatus() == GameStatus.WAITING){
+                int maxPlayer = game.getMaxPlayers();
+                List<Team> teams = game.getAvailableTeams();
+                //分配队伍
+                boolean isChange = false;
+                //matchPlayers本次游戏最大可匹配人数
+                int matchPlayers = players.size() < maxPlayer ? players.size():maxPlayer;
+                for(int i = 0 ; i < matchPlayers ; i++){
+                    Player player = null;
+                    if(i%teams.size() == 0){
+                        isChange = !isChange;
+                    }
+                    if(isChange){
+                        player = players.remove(0);
+                    }
+                    else{
+                        player = players.remove(players.size()-1);
+                    }
+                    Team team = teams.get(i%teams.size());
+                    game.joinToGame(player);
+                    game.selectPlayerTeam(player,team);
+                    game.runGame();
+                }
+            }
+        }
 
     }
 
@@ -203,7 +264,7 @@ public class MatchPool {
      * @param player
      */
     public void joinPlayer(Player player){
-        if(!containPlayer(player)&&players.size()<maxPlayer) {
+        if(!containPlayer(player)&&players.size()<maxPlayer&& status==PoolStatus.WAITING) {
             //判断积分表中是否有这个用户
             IntegralPO integralPO = integralMapper.selectByPlayerAndGameId(player.getName(),this.gameId);
             if(integralPO == null) {

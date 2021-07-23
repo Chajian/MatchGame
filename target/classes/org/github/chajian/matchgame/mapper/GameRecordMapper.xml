@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.github.chajian.matchgame.mapper.GameRecordMapper">
+    <resultMap id="GameRecordMap" type="GameRecordPo">
+        <id column="id" property="id"/>
+        <result column="player_name" property="playerName"/>
+        <result column="game_id" property="gameId"/>
+        <result column="game_name" property="gameName"/>
+        <result column="score" property="score"/>
+        <result column="game_model" property="gameModel"/>
+        <result column="kills" property="kills"/>
+        <result column="deaths" property="deaths"/>
+        <result column="time" property="time"/>
+    </resultMap>
+
+    <select id="selectGameRecordByPlayerAndGame" resultMap="GameRecordMap">
+        select * from game_record where player_name = #{playerName} and game_name = #{gameName}
+    </select>
+    <select id="selectGameRecordById" resultMap="GameRecordMap">
+        select * from game_record where id = #{id}
+    </select>
+
+</mapper>

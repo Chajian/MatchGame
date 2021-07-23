@@ -3,6 +3,8 @@ package org.github.chajian.matchgame.game.api;
 import org.bukkit.entity.Player;
 import org.github.chajian.matchgame.game.Team;
 
+import java.util.List;
+
 /**
  * 小游戏统一接口
  * - 获取目标当前游戏局的主要信息
@@ -30,5 +32,7 @@ public interface GameApi {
      * @return
      */
     Object getTeam(String gameName);
+
+    List<?> getGames();
 
 }
